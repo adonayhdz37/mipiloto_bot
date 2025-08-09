@@ -3,15 +3,6 @@ const axios = require('axios');
 module.exports = function startWatcher(bot) {
   const WALLET = process.env.WALLET_ADDRESS;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  const HELIUS_CREDITS = parseInt(process.env.HELIUS_CREDITS) || 1000000;
-  const DAYS_IN_MONTH = 30;
-
-  // Cálculo automático del intervalo (en segundos)
-  const requestsPerDay = HELIUS_CREDITS / DAYS_IN_MONTH;
-  const requestsPerMinute = requestsPerDay / (24 * 60);
-  const secondsBetweenRequests = Math.ceil(60 / requestsPerMinute);
-
-  console.log(`📊 Helius: ${HELIUS_CREDITS} créditos/mes → ${secondsBetweenRequests}s entre consultas`);
 
   let createdTokens = {};
   let monitoredTokens = {};
@@ -74,9 +65,7 @@ module.exports = function startWatcher(bot) {
     }
   }
 
-  // Usamos el intervalo calculado para Helius
-  setInterval(checkForNewTokens, secondsBetweenRequests * 30000);
-
-  // DexScreener no tiene límite de Helius, podemos dejarlo cada 30s
+  // Ambos cada 30 segundos
+  setInterval(checkForNewTokens, 30000);
   setInterval(checkTokenPrices, 30000);
 };
