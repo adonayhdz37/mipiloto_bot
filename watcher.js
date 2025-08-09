@@ -66,6 +66,6 @@ module.exports = function startWatcher(bot) {
   }
 
   // Ambos cada 30 segundos
-  setInterval(checkForNewTokens, 30000);
-  setInterval(checkTokenPrices, 30000);
+  setInterval(checkForNewTokens, 100000);
+  setInterval(checkTokenPrices, 100000);
 };
