@@ -75,7 +75,7 @@ module.exports = function startWatcher(bot) {
   }
 
   // Usamos el intervalo calculado para Helius
-  setInterval(checkForNewTokens, secondsBetweenRequests * 1000);
+  setInterval(checkForNewTokens, secondsBetweenRequests * 30000);
 
   // DexScreener no tiene límite de Helius, podemos dejarlo cada 30s
   setInterval(checkTokenPrices, 30000);
